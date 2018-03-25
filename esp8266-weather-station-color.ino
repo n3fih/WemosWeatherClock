@@ -57,19 +57,40 @@ See more at https://blog.squix.org
 
 
 #define MINI_BLACK 0
-#define MINI_WHITE 1
-#define MINI_YELLOW 2
-#define MINI_BLUE 3
+#define MINI_WHITE 15
+#define MINI_YELLOW 12 //14
+#define MINI_BLUE 9
 
 #define MAX_FORECASTS 12
 
 // defines the colors usable in the paletted 16 color frame buffer
-uint16_t palette[] = {ILI9341_BLACK, // 0
-                      ILI9341_WHITE, // 1
-                      ILI9341_YELLOW, // 2
-                      0x7E3C
-                      }; //3
+//uint16_t palette[] = {ILI9341_BLACK, // 0
+//                      ILI9341_WHITE, // 1
+//                      ILI9341_YELLOW, // 2
+//                      0x7E3C
+//                      }; //3
 
+ uint16_t palette[] = {
+     ILI9341_BLACK, // 0
+     ILI9341_NAVY, // 1
+     ILI9341_DARKGREEN, //2
+     ILI9341_DARKCYAN, // 3
+     ILI9341_MAROON, // 4
+     ILI9341_PURPLE, // 5
+     ILI9341_OLIVE, // 6
+     ILI9341_LIGHTGREY, // 7
+     ILI9341_DARKGREY, // 8
+     ILI9341_BLUE, // 9
+     ILI9341_GREEN, // 10
+     ILI9341_CYAN, // 11
+     ILI9341_RED, // 12
+     ILI9341_MAGENTA, // 13
+     ILI9341_YELLOW, // 14
+     ILI9341_WHITE // 15
+//     ILI9341_ORANGE, // 0
+//     ILI9341_GREENYELLOW, // 0
+//     ILI9341_PINK // 0
+ };
 int SCREEN_WIDTH = 240;
 int SCREEN_HEIGHT = 320;
 // Limited to 4 colors due to memory constraints
