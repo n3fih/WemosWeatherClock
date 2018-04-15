@@ -31,6 +31,11 @@ See more at https://blog.squix.org
 #include <XPT2046_Touchscreen.h>
 #include "TouchControllerWS.h"
 
+#include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
+//needed for library
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 
 /***
  * Install the following libraries through Arduino Library Manager
@@ -127,19 +132,19 @@ uint16_t screen = 0;
 long timerPress;
 bool canBtnPress;
 
-void connectWifi() {
-  if (WiFi.status() == WL_CONNECTED) return;
-  //Manual Wifi
-  WiFi.begin(WIFI_SSID,WIFI_PASS);
-  int i = 0;
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    if (i>80) i=0;
-    drawProgress(i,"Connecting to WiFi");
-    i+=10;
-    Serial.print(".");
-  }
-}
+//void connectWifi() {
+//  if (WiFi.status() == WL_CONNECTED) return;
+//  //Manual Wifi
+//  WiFi.begin(WIFI_SSID,WIFI_PASS);
+//  int i = 0;
+//  while (WiFi.status() != WL_CONNECTED) {
+//    delay(500);
+//    if (i>80) i=0;
+//    drawProgress(i,"Connecting to WiFi");
+//    i+=10;
+//    Serial.print(".");
+//  }
+//}
 
 void setup() {
   Serial.begin(115200);
@@ -155,8 +160,17 @@ void setup() {
   gfx.init();
   gfx.fillBuffer(MINI_BLACK);
   gfx.commit();
+//
+//  connectWifi();
+WiFiManager wifiManager;
+//wifiManager.resetSettings();
+wifiManager.setDebugOutput(true);
+drawProgress(5, "Set up wifi");
+wifiManager.autoConnect("AutoConnectAP");
+Serial.println("connected...yay! :)");
 
-  connectWifi();
+
+
 
   ts.begin();
 
